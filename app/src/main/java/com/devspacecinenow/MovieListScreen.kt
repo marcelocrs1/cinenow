@@ -26,13 +26,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 @Composable
-fun MovieListScreen() {
+fun MovieListScreen(navController: NavHostController) {
 
     var nowPlayingMovies by remember { mutableStateOf<List<MovieDto>>(emptyList()) }
     var topRatedMovies by remember { mutableStateOf<List<MovieDto>>(emptyList()) }
@@ -144,6 +145,7 @@ fun MovieListScreen() {
         upcomingMovies = upcomingMovies,
     ){
         itemClicked ->
+        navController.navigate(route = "movieDetail/${itemClicked.id}")
     }
 
 }
